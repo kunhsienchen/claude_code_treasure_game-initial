@@ -3,8 +3,10 @@
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
 
+  const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'claude_code_treasure_game-initial';
+
   export default defineConfig({
-    base: '/claude_code_treasure_game-initial/',
+    base: process.env.GITHUB_ACTIONS ? `/${repoName}/` : '/',
     plugins: [react()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
